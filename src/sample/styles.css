@@ -1,0 +1,35 @@
+#borderPane {
+
+-fx-background-image: url("pizza-background.jpg");
+-fx-background-repeat: stretch;
+-fx-background-color: #444444;
+-fx-background-position: center center;
+}
+
+#hbox {
+-fx-background-color: grey;
+-fx-padding: 20, 10, 10, 20;
+-fx-spacing: 20;
+}
+
+.button {
+-fx-background-radius: 10;
+-fx-pref-width: 100px;
+-fx-pref-height: 20px;
+-fx-font-family: Serif;
+}
+
+.label {
+-fx-font-size: 12px;
+-fx-font-weight: bold;
+-fx-text-fill: #333333;
+-fx-font-family: Arial;
+}
+
+#warningLabel {
+-fx-font-size: 20px;
+-fx-font-weight: bold;
+-fx-position: center;
+-fx-text-fill: red;
+}
+
