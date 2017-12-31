@@ -4,8 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<DialogPane fx:id="dialogPane" fx:controller="sample.Pizza"
-            xmlns:fx="http://javafx.com/fxml" stylesheets="@styles.css">
+<DialogPane xmlns:fx="http://javafx.com/fxml" fx:id="dialogPane"
+            fx:controller="sample.Pizza" stylesheets="@styles.css">
 
     <headerText>
         Instructions:
@@ -22,7 +22,8 @@
             <TextField fx:id="priceField" prefWidth="50" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
             <Label text="Short Description:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextArea fx:id="shortDescriptionField" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2" prefHeight="200"
+            <TextArea fx:id="shortDescriptionField" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                      GridPane.columnSpan="2" prefHeight="200"
                       prefWidth="50"/>
         </GridPane>
 

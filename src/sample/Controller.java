@@ -22,8 +22,13 @@ import java.util.Optional;
 
 public class Controller {
 
+    //the pdf file which is opened by Button button2
     private static String filename = "sql.pdf";
 
+    //webpage which is opened by Button button3
+    private static String webpageLink = "http://marcindobienko.xyz";
+
+    //variables for buttons in numeric list, starts from the left of application
     @FXML
     private Button button1;
 
@@ -42,21 +47,23 @@ public class Controller {
     @FXML
     private Button button6;
 
+    //BorderPane
     @FXML
     private BorderPane borderPane;
 
-
+    //shadow effect for all buttons
     public void initialize() {
 
-       button1.setEffect(new DropShadow());
-       button2.setEffect(new DropShadow());
-       button3.setEffect(new DropShadow());
-       button4.setEffect(new DropShadow());
-       button5.setEffect(new DropShadow());
-       button6.setEffect(new DropShadow());
+        button1.setEffect(new DropShadow());
+        button2.setEffect(new DropShadow());
+        button3.setEffect(new DropShadow());
+        button4.setEffect(new DropShadow());
+        button5.setEffect(new DropShadow());
+        button6.setEffect(new DropShadow());
 
     }
 
+    //method dedicated to Button button2, open all files and also focus on specific type of files
     @FXML
     public void openFile() throws IOException {
 
@@ -71,7 +78,7 @@ public class Controller {
         List<File> file = chooser.showOpenMultipleDialog(borderPane.getScene().getWindow());
         if (file != null) {
             try {
-                for (int i=0; i<file.size(); i++) {
+                for (int i = 0; i < file.size(); i++) {
 //                    System.out.println(file.get(i)); //option
                     Desktop.getDesktop().open(file.get(i));
                 }
@@ -83,25 +90,29 @@ public class Controller {
         }
     }
 
+    //dedicated to Button button3, open pdf certificate
     @FXML
     public void openCertificate() {
         try {
-        File myFile = new File(filename);
-        Desktop.getDesktop().open(myFile);
-            } catch (IOException e) {
+            File myFile = new File(filename);
+            Desktop.getDesktop().open(myFile);
+        } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-            }
         }
+    }
 
+    //created for Button button3 to open webpage
     @FXML
     public void openWebsite() throws IOException {
 
-        try{
-            Desktop.getDesktop().browse(new URL("http://marcindobienko.xyz").toURI());
+        try {
+            Desktop.getDesktop().browse(new URL(webpageLink).toURI());
         } catch (URISyntaxException e) {
             e.getMessage();
         }
     }
+
+    //Open Dialog when Button button4 is pressed
     @FXML
     public void showDialog() throws InterruptedException, IOException {
         javafx.scene.control.Dialog<ButtonType> dialog = new Dialog<>();
@@ -122,36 +133,37 @@ public class Controller {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
         Optional<ButtonType> result = dialog.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             Pizza controller = fxmlLoader.getController();
             controller.writingData();
         }
     }
+
+    //load data from the file
     @FXML
-    public void loadOrders(){
+    public void loadOrders() {
 
         String orderFile = Pizza.getFileForOrders();
 
         try (BufferedReader dirFile = new BufferedReader(new FileReader(orderFile))) {
             String input;
-            while((input = dirFile.readLine()) != null) {
+            while ((input = dirFile.readLine()) != null) {
                 String[] data = input.split("\t");
                 String code = data[0];
                 String price = data[1];
                 String shortDescription = data[2];
 
                 System.out.println("\n" + "Load order: " + "\n" + "Code: " + code + "\n" + "Price: " + price + "\n"
-                + "Description: " + shortDescription + "\n" + "* * * * *");
+                        + "Description: " + shortDescription + "\n" + "* * * * *");
 
             }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
-
-
     }
 
+    //exit
     @FXML
     public void handleExit() {
 
